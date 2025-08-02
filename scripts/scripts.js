@@ -15,11 +15,17 @@ languageSwitcher.addEventListener('click', () => {
     currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
     languageSwitcher.querySelector('span').textContent = currentLanguage.toUpperCase();
 
-    // Actualizar todas las traducciones
+    // Update translations
     updateTranslations(currentLanguage, translations);
 
-    // Mostrar mensaje de confirmación
+    renderProjectsPage();
+
+    renderPagination();
+
+    applyRandomColorsToSkills();
+    
     const t = translations[currentLanguage];
+
 });
 
 // Download CV button
@@ -133,130 +139,55 @@ window.addEventListener('DOMContentLoaded', applyRandomColorsToSkills);
 
 // Projects data and rendering
 const projects = [
-    {
-        title: "Smart Itinerary Generator",
-        description: "Personalized tourist itinerary generator using NLP and geospatial optimization.",
-        tags: ["Python", "FastAPI", "NLP", "React" , "Sentence Transformers", "PostgreSql", "Semantic Search", "Valhalla"],
-        github: "https://github.com/cberdejo/PrefectScraperAI",
-        image: "assets/thumbnails/sig.png",
-        html: "project-details/smart-itinerary.html"
-    },
-    {
-        title: "Particle Universe Simulation",
-        description: "A Java simulation of gravitational interactions between particles in 2D space using Newtonian mechanics.",
-        tags: ["Java", "Swing", "Physics"],
-        github: "https://github.com/cberdejo/Universe-Simulation-Java",
-        image: "assets/thumbnails/particle.png",
-        html: "project-details/particle-universe.html"
-    },
-    {
-        title: "News Recommendation System",
-        description: "News recommendation system based on Hacker News that uses scraping, NLP, and semantic search. It extracts headlines, generates embeddings with Sentence Transformers, and recommends similar articles using Qdrant as a vector database.",
-        tags: ["Python", "NLP", "Web Scraping", "Selenium", "spaCy", "Sentence Transformers", "Qdrant", "Vector Search", "Semantic Search", "Recommender System"],
-        github: "https://github.com/cberdejo/hacker_news_recomendation_system",
-        image: "assets/thumbnails/hackersnews.png",
-        html: "project-details/news-reco.html"
-    },
-    // {
-    //     title: "Movie Recommendation with RAG",
-    //     description: "An intelligent movie recommender using semantic search and local LLMs with Ollama.",
-    //     tags: [
-    //         "Python",
-    //         "Ollama",
-    //         "RAG",
-    //         "Embeddings",
-    //         "FAISS",
-    //         "Streamlit"
-    //     ],
-    //     github: "https://github.com/cberdejo/movie-rag-recommender",
-    //     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
-    //     html: "project-details/movie-rag.html"
-    // },
-    {
-        title: "GeoChat",
-        description: "Conversational geolocation assistant using  OpenAI and Streamlit.",
-        tags: ["Python", "OpenAI", "Streamlit", "Geocoding", "RAG", "Nomitatim", "Geopy"],
-        github: "https://github.com/cberdejo/GeoChat",
-        image: "assets/thumbnails/geochat.png",
-        html: "project-details/geochat.html"
-    },
-    {
-        title: "FitMatch",
-        description: "Platform for training and diet planning with intelligent matching between users and trainers.",
-        tags: [
-            "Flutter",
-            "Node.js",
-            "TypeScript",
-            "Matching Algorithm",
-            "Express",
-            "Prisma",
-            "JWT"
-        ],
-        github: "https://github.com/cberdejo/FitMatch_frontend",
-        image: "assets/thumbnails/fitmatch.png",
-        html: "project-details/fitmatch.html"
-    },
-    {
-        title: "Obesity ML Classification",
-        description: "Machine learning project to classify obesity levels based on users' lifestyle and eating habits. The system compares several classifiers and ensemble models to identify the best-performing approach.",
-        tags: ["Python", "Machine Learning", "scikit-learn", "Classification", "KNN", "Decision Tree", "SVC", "Ensemble"],
-
-        github: "https://github.com/cberdejo/ml-obesity-predictor",
-        image: "assets/thumbnails/obesity.png",
-        html: "project-details/obesity-classifier.html"
-    },
-    {
-        title: "Animal ML Classification",
-        description: "This project provides a REST API for classifying animals based on physical features using traditional machine learning models. Built with FastAPI and scikit-learn, it includes Docker support and exposes an endpoint for inference and visualization.",
-        tags: ["Python", "FastAPI", "scikit-learn", "Machine Learning", "Docker", "API", "Classification"],
-        github: "https://github.com/cberdejo/python-machine-learning-challenge",
-        image: "assets/thumbnails/animal.png",
-        html: "project-details/python-ml.html"
-    },
-    // {
-    //     title: "Semantic Real Estate Scraper",
-    //     description: "Distributed scraping system with semantic vectorization and modular orchestration via Prefect or Airflow.",
-    //     tags: [
-    //         "Python",
-    //         "Selenium",
-    //         "BeautifulSoup",
-    //         "SentenceTransformers",
-    //         "PostgreSQL",
-    //         "MinIO",
-    //         "Airflow",
-    //         "Prefect"
-    //     ],
-    //     github: "https://github.com/cberdejo/AirflowScraperAI",
-    //     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
-    //     html: "project-details/real-estate-scraper.html"
-    // },
-    // {
-    //     title: "Spark Streaming - Java [WIP]",
-    //     description: "Real-time occupancy prediction using Spark Streaming in Java. Project in progress.",
-    //     tags: [
-    //         "Java",
-    //         "Apache Spark",
-    //         "Streaming",
-    //         "Real-Time"
-    //     ],
-    //     github: "https://github.com/cberdejo/spark-streaming-java",
-    //     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
-    //     html: "project-details/spark-java.html"
-    // },
-    // {
-    //     title: "Spark Streaming - Python [WIP]",
-    //     description: "Real-time data pipeline with Spark for smart dashboards. Project in progress.",
-    //     tags: [
-    //         "Python",
-    //         "Spark",
-    //         "Streaming",
-    //         "ETL",
-    //         "Dashboard"
-    //     ],
-    //     github: "https://github.com/cberdejo/spark-streaming-python",
-    //     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    //     html: "project-details/spark-python.html"
-    // }
+  {
+    id: "sig",
+    tags: ["Python", "FastAPI", "NLP", "React", "Sentence Transformers", "PostgreSql", "Semantic Search", "Valhalla"],
+    github: "https://github.com/cberdejo/PrefectScraperAI",
+    image: "assets/thumbnails/sig.png",
+    html: "project-details/smart-itinerary.html"
+  },
+  {
+    id: "particle",
+    tags: ["Java", "Swing", "Physics"],
+    github: "https://github.com/cberdejo/Universe-Simulation-Java",
+    image: "assets/thumbnails/particle.png",
+    html: "project-details/particle-universe.html"
+  },
+  {
+    id: "news",
+    tags: ["Python", "NLP", "Web Scraping", "Selenium", "spaCy", "Sentence Transformers", "Qdrant", "Vector Search", "Semantic Search", "Recommender System"],
+    github: "https://github.com/cberdejo/hacker_news_recomendation_system",
+    image: "assets/thumbnails/hackersnews.png",
+    html: "project-details/news-reco.html"
+  },
+  {
+    id: "geochat",
+    tags: ["Python", "OpenAI", "Streamlit", "Geocoding", "RAG", "Nomitatim", "Geopy"],
+    github: "https://github.com/cberdejo/GeoChat",
+    image: "assets/thumbnails/geochat.png",
+    html: "project-details/geochat.html"
+  },
+  {
+    id: "fitmatch",
+    tags: ["Flutter", "Node.js", "TypeScript", "Matching Algorithm", "Express", "Prisma", "JWT"],
+    github: "https://github.com/cberdejo/FitMatch_frontend",
+    image: "assets/thumbnails/fitmatch.png",
+    html: "project-details/fitmatch.html"
+  },
+  {
+    id: "obesity",
+    tags: ["Python", "Machine Learning", "scikit-learn", "Classification", "KNN", "Decision Tree", "SVC", "Ensemble"],
+    github: "https://github.com/cberdejo/ml-obesity-predictor",
+    image: "assets/thumbnails/obesity.png",
+    html: "project-details/obesity-classifier.html"
+  },
+  {
+    id: "animals",
+    tags: ["Python", "FastAPI", "scikit-learn", "Machine Learning", "Docker", "API", "Classification"],
+    github: "https://github.com/cberdejo/python-machine-learning-challenge",
+    image: "assets/thumbnails/animal.png",
+    html: "project-details/python-ml.html"
+  }
 ];
 
 
@@ -273,7 +204,7 @@ function renderProjectsPage() {
     const end = start + projectsPerPage;
 
     const currentProjects = projects.slice(start, end);
-    currentProjects.forEach(p => renderProjectCard(p, container));
+    currentProjects.forEach(p => renderProjectCard(p, container, currentLanguage)); 
 
     renderPagination();
 }

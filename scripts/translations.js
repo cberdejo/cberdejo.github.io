@@ -76,6 +76,39 @@ const translations = {
     // Alerts
     downloadAlert: "Downloading CV... (This is a demo)",
     languageSwitched: "Language switched to English",
+
+    //PROJECTS
+    projects: {
+      sig: {
+        title: "Smart Itinerary Generator",
+        description: "Personalized tourist itinerary generator using NLP and geospatial optimization."
+      },
+      particle: {
+        title: "Particle Universe Simulation",
+        description: "A Java simulation of gravitational interactions between particles in 2D space using Newtonian mechanics."
+      },
+      news: {
+        title: "News Recommendation System",
+        description: "News recommendation system based on Hacker News using scraping, NLP, and semantic search. It extracts headlines, generates embeddings, and recommends similar articles using Qdrant."
+      },
+      geochat: {
+        title: "GeoChat",
+        description: "Conversational geolocation assistant using OpenAI and Streamlit."
+      },
+      fitmatch: {
+        title: "FitMatch",
+        description: "Platform for training and diet planning with intelligent matching between users and trainers."
+      },
+      obesity: {
+        title: "Obesity ML Classification",
+        description: "ML system to classify obesity levels based on users' lifestyle and habits. Compares classifiers and ensemble models to find the best performer."
+      },
+      animals: {
+        title: "Animal ML Classification",
+        description: "REST API to classify animals based on physical features using traditional ML. Built with FastAPI, includes Docker and inference endpoint."
+      }
+    }
+
   },
   es: {
     // Navigation
@@ -143,6 +176,38 @@ const translations = {
     // Alerts
     downloadAlert: "Descargando CV... (esto es una demo)",
     languageSwitched: "Idioma cambiado a Español",
+    //PROJECTS 
+    projects: {
+      sig: {
+        title: "Generador de Itinerarios Inteligente",
+        description: "Generador de itinerarios turísticos personalizados usando PLN y optimización geoespacial."
+      },
+      particle: {
+        title: "Simulación del Universo de Partículas",
+        description: "Simulación en Java de interacciones gravitacionales entre partículas en un espacio 2D usando mecánica newtoniana."
+      },
+      news: {
+        title: "Sistema de Recomendación de Noticias",
+        description: "Sistema de recomendación de noticias basado en Hacker News usando scraping, PLN y búsqueda semántica con Qdrant."
+      },
+      geochat: {
+        title: "GeoChat",
+        description: "Asistente conversacional de geolocalización usando OpenAI y Streamlit."
+      },
+      fitmatch: {
+        title: "FitMatch",
+        description: "Plataforma para planificación de entrenamiento y dieta con emparejamiento inteligente entre usuarios y entrenadores."
+      },
+      obesity: {
+        title: "Clasificación de Obesidad con ML",
+        description: "Sistema de ML para clasificar niveles de obesidad según el estilo de vida. Compara clasificadores y modelos ensemble para encontrar el más eficaz."
+      },
+      animals: {
+        title: "Clasificación de Animales con ML",
+        description: "API REST para clasificar animales por características físicas usando ML tradicional. Hecho con FastAPI, incluye soporte Docker y endpoint de inferencia."
+      }
+    }
+
   }
 };
 
