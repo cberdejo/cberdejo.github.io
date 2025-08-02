@@ -1,9 +1,15 @@
 import renderProjectCard from './renderProjectCard.js';
 import { translations, updateTranslations } from '../scripts/translations.js';
 
+//mobile width
+
+const isMobile = window.innerWidth <= 768;
+
+
 // Language switcher functionality
 const languageSwitcher = document.querySelector('.language-switcher');
 let currentLanguage = 'en';
+
 
 languageSwitcher.addEventListener('click', () => {
     currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
@@ -19,7 +25,12 @@ languageSwitcher.addEventListener('click', () => {
 // Download CV button
 document.getElementById('download-cv').addEventListener('click', (e) => {
     e.preventDefault();
-    const t = translations[currentLanguage];
+    const link = document.createElement('a');
+    link.href = 'assets/cv.pdf';
+    link.download = 'cv.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
 
 // Back to top button
@@ -125,9 +136,9 @@ const projects = [
     {
         title: "Smart Itinerary Generator",
         description: "Personalized tourist itinerary generator using NLP and geospatial optimization.",
-        tags: ["Python", "FastAPI", "NLP", "React"],
+        tags: ["Python", "FastAPI", "NLP", "React" , "Sentence Transformers", "PostgreSql", "Semantic Search", "Valhalla"],
         github: "https://github.com/cberdejo/PrefectScraperAI",
-        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/sig.png",
         html: "project-details/smart-itinerary.html"
     },
     {
@@ -135,131 +146,122 @@ const projects = [
         description: "A Java simulation of gravitational interactions between particles in 2D space using Newtonian mechanics.",
         tags: ["Java", "Swing", "Physics"],
         github: "https://github.com/cberdejo/Universe-Simulation-Java",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/particle.png",
         html: "project-details/particle-universe.html"
     },
     {
         title: "News Recommendation System",
-        description: "NLP-powered system using semantic vectorization with Qdrant and spaCy for personalized news.",
-        tags: ["Python", "NLP", "Qdrant", "spaCy"],
+        description: "News recommendation system based on Hacker News that uses scraping, NLP, and semantic search. It extracts headlines, generates embeddings with Sentence Transformers, and recommends similar articles using Qdrant as a vector database.",
+        tags: ["Python", "NLP", "Web Scraping", "Selenium", "spaCy", "Sentence Transformers", "Qdrant", "Vector Search", "Semantic Search", "Recommender System"],
         github: "https://github.com/cberdejo/hacker_news_recomendation_system",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/hackersnews.png",
         html: "project-details/news-reco.html"
     },
-    {
-        title: "Movie Recommendation with RAG",
-        description: "An intelligent movie recommender using semantic search and local LLMs with Ollama.",
-        tags: [
-            "Python",
-            "Ollama",
-            "RAG",
-            "Embeddings",
-            "FAISS",
-            "Streamlit"
-        ],
-        github: "https://github.com/cberdejo/movie-rag-recommender",
-        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
-        html: "project-details/movie-rag.html"
-    },
-  
-
+    // {
+    //     title: "Movie Recommendation with RAG",
+    //     description: "An intelligent movie recommender using semantic search and local LLMs with Ollama.",
+    //     tags: [
+    //         "Python",
+    //         "Ollama",
+    //         "RAG",
+    //         "Embeddings",
+    //         "FAISS",
+    //         "Streamlit"
+    //     ],
+    //     github: "https://github.com/cberdejo/movie-rag-recommender",
+    //     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
+    //     html: "project-details/movie-rag.html"
+    // },
     {
         title: "GeoChat",
-        description: "Conversational geolocation assistant using OpenAI and Streamlit.",
-        tags: ["Python", "OpenAI", "Streamlit", "Geocoding"],
+        description: "Conversational geolocation assistant using  OpenAI and Streamlit.",
+        tags: ["Python", "OpenAI", "Streamlit", "Geocoding", "RAG", "Nomitatim", "Geopy"],
         github: "https://github.com/cberdejo/GeoChat",
-        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/geochat.png",
         html: "project-details/geochat.html"
     },
     {
         title: "FitMatch",
         description: "Platform for training and diet planning with intelligent matching between users and trainers.",
-        tags: ["Flutter", "Node.js", "TypeScript", "Matching Algorithm",
+        tags: [
+            "Flutter",
             "Node.js",
             "TypeScript",
+            "Matching Algorithm",
             "Express",
             "Prisma",
-            "JWT",
+            "JWT"
         ],
         github: "https://github.com/cberdejo/FitMatch_frontend",
-        image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/fitmatch.png",
         html: "project-details/fitmatch.html"
     },
-
-
     {
-        title: "Obesity Classification",
-        description: "Machine learning project comparing classifiers to predict obesity levels based on lifestyle habits.",
-        tags: [
-            "Python",
-            "scikit-learn",
-            "ML",
-            "Health",
-            "Ensemble"
-        ],
+        title: "Obesity ML Classification",
+        description: "Machine learning project to classify obesity levels based on users' lifestyle and eating habits. The system compares several classifiers and ensemble models to identify the best-performing approach.",
+        tags: ["Python", "Machine Learning", "scikit-learn", "Classification", "KNN", "Decision Tree", "SVC", "Ensemble"],
+
         github: "https://github.com/cberdejo/ml-obesity-predictor",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/obesity.png",
         html: "project-details/obesity-classifier.html"
     },
-      {
-        title: "Python ML Challenge",
-        description: "API for animal classification based on features. Built with FastAPI and scikit-learn.",
-        tags: ["Python", "FastAPI", "scikit-learn", "Docker"],
+    {
+        title: "Animal ML Classification",
+        description: "This project provides a REST API for classifying animals based on physical features using traditional machine learning models. Built with FastAPI and scikit-learn, it includes Docker support and exposes an endpoint for inference and visualization.",
+        tags: ["Python", "FastAPI", "scikit-learn", "Machine Learning", "Docker", "API", "Classification"],
         github: "https://github.com/cberdejo/python-machine-learning-challenge",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        image: "assets/thumbnails/animal.png",
         html: "project-details/python-ml.html"
     },
-    {
-        title: "Semantic Real Estate Scraper",
-        description: "Distributed scraping system with semantic vectorization and modular orchestration via Prefect or Airflow.",
-        tags: [
-            "Python",
-            "Selenium",
-            "BeautifulSoup",
-            "SentenceTransformers",
-            "PostgreSQL",
-            "MinIO",
-            "Airflow",
-            "Prefect"
-        ],
-        github: "https://github.com/cberdejo/AirflowScraperAI",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
-        html: "project-details/real-estate-scraper.html"
-    },
-    
-
-    {
-        title: "Spark Streaming - Java [WIP]",
-        description: "Real-time occupancy prediction using Spark Streaming in Java. Project in progress.",
-        tags: [
-            "Java",
-            "Apache Spark",
-            "Streaming",
-            "Real-Time"
-        ],
-        github: "https://github.com/cberdejo/spark-streaming-java",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
-        html: "project-details/spark-java.html"
-    },
-    {
-        title: "Spark Streaming - Python [WIP]",
-        description: " real-time data pipeline with Spark for smart dashboards. Project in progress.",
-        tags: [
-            "Python",
-            "Spark",
-            "Streaming",
-            "ETL",
-            "Dashboard"
-        ],
-        github: "https://github.com/cberdejo/spark-streaming-python",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-        html: "project-details/spark-python.html"
-    }
-
+    // {
+    //     title: "Semantic Real Estate Scraper",
+    //     description: "Distributed scraping system with semantic vectorization and modular orchestration via Prefect or Airflow.",
+    //     tags: [
+    //         "Python",
+    //         "Selenium",
+    //         "BeautifulSoup",
+    //         "SentenceTransformers",
+    //         "PostgreSQL",
+    //         "MinIO",
+    //         "Airflow",
+    //         "Prefect"
+    //     ],
+    //     github: "https://github.com/cberdejo/AirflowScraperAI",
+    //     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+    //     html: "project-details/real-estate-scraper.html"
+    // },
+    // {
+    //     title: "Spark Streaming - Java [WIP]",
+    //     description: "Real-time occupancy prediction using Spark Streaming in Java. Project in progress.",
+    //     tags: [
+    //         "Java",
+    //         "Apache Spark",
+    //         "Streaming",
+    //         "Real-Time"
+    //     ],
+    //     github: "https://github.com/cberdejo/spark-streaming-java",
+    //     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
+    //     html: "project-details/spark-java.html"
+    // },
+    // {
+    //     title: "Spark Streaming - Python [WIP]",
+    //     description: "Real-time data pipeline with Spark for smart dashboards. Project in progress.",
+    //     tags: [
+    //         "Python",
+    //         "Spark",
+    //         "Streaming",
+    //         "ETL",
+    //         "Dashboard"
+    //     ],
+    //     github: "https://github.com/cberdejo/spark-streaming-python",
+    //     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    //     html: "project-details/spark-python.html"
+    // }
 ];
 
 
-const projectsPerPage = 6;
+// const projectsPerPage = isMobile? 1 : 6;
+const projectsPerPage = projects.length
 let currentPage = 1;
 const totalPages = Math.ceil(projects.length / projectsPerPage);
 
@@ -277,26 +279,29 @@ function renderProjectsPage() {
 }
 
 function renderPagination() {
-    const pagination = document.getElementById("pagination");
-    if (!pagination) return;
-    pagination.innerHTML = "";
+    const prevBtn = document.getElementById("prev-button");
+    const nextBtn = document.getElementById("next-button");
 
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.className =
-            "px-4 py-2 rounded-full border font-medium transition " +
-            (i === currentPage
-                ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-blue-600 border-blue-300 hover:bg-blue-50");
+    if (!prevBtn || !nextBtn) return;
 
-        btn.addEventListener("click", () => {
-            currentPage = i;
+    // Mostrar u ocultar según la página actual
+    prevBtn.style.visibility = currentPage === 1 ? "hidden" : "visible";
+    nextBtn.style.visibility = currentPage === totalPages ? "hidden" : "visible";
+
+    prevBtn.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
             renderProjectsPage();
-        });
+        }
+    };
 
-        pagination.appendChild(btn);
-    }
+    nextBtn.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderProjectsPage();
+        }
+    };
 }
+
 
 document.addEventListener("DOMContentLoaded", renderProjectsPage);

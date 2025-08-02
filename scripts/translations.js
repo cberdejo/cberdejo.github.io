@@ -24,12 +24,19 @@ const translations = {
     // About Section
     aboutTitle: "About Me",
     aboutWho: "Who I Am",
-    aboutText1: `I'm a passionate software engineer with expertise in artificial intelligence, machine learning,
-and full-stack development. With a strong foundation in computer science, I specialize in building intelligent systems that solve complex problems.`,
-    aboutText2: `After completing my degree in Software Engineering at the University of Málaga (UMA),
-I pursued a Master's in Big Data, Artificial Intelligence, and Data Engineering, which I successfully completed in 2024.
-Since then, I have been working in the data field, focusing my career on data analysis and data engineering,
-with the goal of delivering data-driven solutions to complex real-world challenges as a data scientist and data engineer.`,
+    aboutText1: ` I graduated from the University of Málaga (UMA). During my degree, I completed an internship at
+    Accenture, which gave me valuable insight into the professional tech world.
+    While working on my final degree project, I joined TD Consulting, a tech consultancy firm where
+    I worked on web development projects, covering backend, frontend, database design, and
+    management. I also got involved in R&D initiatives, which sparked my interest in data and
+    artificial intelligence.`,
+    aboutText2: `  Driven by that interest, I pursued and completed a Master's in Big Data, Artificial
+    Intelligence, and Data Engineering in 2025. After finishing the program, I joined Quantia, where
+    I developed pipelines to gather, process, and format data for training AI models. I also played
+    an active role in designing and training AI models tailored to various real-world use cases.
+
+    My profile brings together strong software development skills, a solid foundation in data and
+    AI, and hands-on experience in applied tech environments.`,
     skillsTitle: "My Skills",
 
 
@@ -93,10 +100,12 @@ with the goal of delivering data-driven solutions to complex real-world challeng
     // About Section
     aboutTitle: "Sobre mí",
     aboutWho: "Quién soy",
-    aboutText1: `Soy un ingeniero de software apasionado con experiencia en inteligencia artificial, aprendizaje automático y desarrollo full-stack. Con una sólida base en informática, me especializo en construir sistemas inteligentes que resuelven problemas complejos.`,
-    aboutText2: `Tras finalizar mi grado en Ingeniería del Software en la Universidad de Málaga (UMA),
-cursé un Máster en Big Data, Inteligencia Artificial e Ingeniería de Datos, que completé con éxito en 2024.
-Desde entonces he estado trabajando en el ámbito de los datos, enfocando mi carrera en el análisis y la ingeniería de datos, con el objetivo de aportar soluciones basadas en datos a problemas reales complejos como científico e ingeniero de datos.`,
+    aboutText1: ` Me gradué como Ingeniero de Software por la Universidad de Málaga (UMA). Durante mis estudios, realicé mis prácticas en Accenture, lo que me permitió tener un primer contacto con el mundo profesional.
+    Mientras desarrollaba mi Trabajo de Fin de Grado, trabajé en TD Consulting, una consultora tecnológica donde participé en proyectos de desarrollo web, abarcando tanto backend como frontend, además del diseño y gestión de bases de datos.
+    Esta experiencia también me permitió colaborar en tareas de I+D, donde comencé a interesarme profundamente por el mundo de los datos y la inteligencia artificial.`,
+    aboutText2: `Ese interés me llevó a cursar el máster en Big Data, Inteligencia Artificial y Data Engineering, que finalicé en 2025. Tras completar el máster, me incorporé a Quantia, donde trabajé en el desarrollo 
+    de pipelines para la obtención, preparación y formateo de datos destinados al entrenamiento de modelos de IA. Además, participé activamente en la creación y entrenamiento de modelos de inteligencia artificial para 
+    distintos casos de uso. Mi perfil combina conocimientos sólidos en desarrollo de software, una fuerte base técnica en datos e inteligencia artificial, y experiencia aplicada en entornos reales.`,
     skillsTitle: "Mis habilidades",
 
     // Projects Section
@@ -161,7 +170,7 @@ function updateTranslations(currentLanguage, translations) {
   heroSection.querySelector('a[href="#projects"]').innerHTML = `${t.viewMyWork} <i class="fas fa-arrow-down ml-2"></i>`;
   heroSection.querySelector('a[href="#contact"]').innerHTML = `${t.contactMe} <i class="fas fa-paper-plane ml-2"></i>`;
 
-    // About Section
+  // About Section
   document.querySelector('#about h2').textContent = t.aboutTitle;
   document.querySelector('#about h3').textContent = t.aboutWho;
   document.querySelectorAll('#about p')[0].textContent = t.aboutText1;
